@@ -1,0 +1,34 @@
+.table-responsive-custom #DataTables_Table_0_filter input{margin: 3px 3px 0 0;}
+.table-responsive-custom .dataTables_info{padding-top: 0.6em !important;}
+.table-responsive-custom .dataTables_info{padding-top: 0.6em !important;}
+.btn-alt-dual-tianhe{
+    color: #fff;
+    background-color: #52666c;
+    border-color: #52666c;
+}
+.btn-alt-dual-tianhe:hover{
+    color: #fff;
+    background-color: #405055;
+    border-color: #374549;
+    box-shadow: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.bg323e42 {
+    background-color: #323e42;
+}
+.simplebar-mask{
+    background-color: #323e42;
+}
+
+.btn-alt-dual-tianhe-2{
+    color: #fff;
+    background-color:rgba(0,0,0,0);
+    border-color: #374549;
+}
+.btn-alt-dual-tianhe-2:hover{
+    color: #fff;
+    background-color: #52666c;
+    border-color: #52666c;
+    box-shadow: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

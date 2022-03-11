@@ -1,0 +1,94 @@
+<div class="js-wizard-simple block block overflow-hidden">
+    <div class="progress rounded-0" data-wizard="progress" style="height: 6px;">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <ul class="nav nav-tabs nav-tabs-alt nav-justified" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link rounded-0 font-weight-normal active" href="#base" data-toggle="tab">基础</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link rounded-0 font-weight-normal" href="#domain" data-toggle="tab">域名</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link rounded-0 font-weight-normal" href="#keyword-box" data-toggle="tab">关键词</a>
+        </li>
+    </ul>
+    <form action="" class="ajax_from" method="post">
+        <div class="block-content block-content-full tab-content px-md-5 pr-0" style="margin-left: 6px;">
+            <div class="fade fade-left tab-pane active show" id="base" role="tabpanel">
+                <div class="form-group row font-size-sm mb-2">
+                    <label class="col-form-label font-weight-normal pr-0 pl-2" for="name">项目名称</label>
+                    <div class="col-sm-4 mr-4">
+                        <input class="form-control font-size-sm" id="name" type="text" value="{{$.info.Name}}" name="name" placeholder="项目名称"/>
+                        <div class="help-block pt-1 pb-1 font-size-minimum"><code>项目名称:必填</code>&nbsp;&nbsp;用于后台标识</div>
+                    </div>
+                    <label class="col-form-label font-weight-normal" for="link">友链数量</label>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <input class="form-control font-size-sm" type="number" id="link" value="{{$.info.Link}}" name="link" placeholder="底部友情链接最大数量">
+                            <div class="input-group-append"><span class="input-group-text font-size-sm">个</span></div>
+                        </div>
+                        <div class="help-block pt-1 pb-1 font-size-minimum">
+                            <code data-original-title="底部友情链接最大数量；太多不利于项目发展；" class="js-tooltip" data-toggle="tooltip">* 对友链数量选项有疑问？</code>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row font-size-sm mb-2">
+                    <label class="col-form-label font-weight-normal pr-0 pl-2" for="template">项目模板</label>
+                    <div class="col-sm-10">
+                        <select class="form-control font-size-sm" name="template" id="template">
+                            {{range $i, $item := .theme}}
+                                <option  {{if eq $.info.Template $i }} selected {{end}} value="{{$i}}">{{$item}}</option>
+                            {{end}}
+                        </select>
+                        <div class="help-block pt-1 pb-1 font-size-minimum">使用模板分组作为前台模板~</div>
+                    </div>
+                </div>
+                <div class="form-group row font-size-sm mb-0">
+                    <label class="col-form-label font-weight-normal pr-0 pl-2" style="line-height: 77px;" for="statistics">采集地址</label>
+                    <div class="col-sm-10">
+                        <code class="form-control form-control-alt font-size-sm" id="statistics" style="height: 88px;word-break: break-all;">
+                            http://{{config "String" "system_domain" ""}}/admin/endorse/collect?id={{$.info.Id}}&key={{$.info.Statistics}}
+                        </code>
+                        <div class="help-block pt-1 pb-1 font-size-minimum"><code>此地址配置到宝塔定时任务！</code>定时时间至少为[ 域名数 * 10s ] /次</div>
+                    </div>
+                </div>
+            </div>
+            <div class="fade fade-left tab-pane" id="domain" role="tabpanel">
+                <div class="row" id="domain_row">
+                    {{range $i, $e := .domain}}
+                        <div class="item_prefix form-group col-sm-5 p-1 badge-primary mb-3 form-group-prefix" data-key="{{$i}}">
+                            <div class="input-daterange input-group">
+                                <input type="text" class="form-control form-control-sm" value="{{$e.Name}}" name="domain-title" placeholder="站点名字">
+                                <div class="input-group-prepend input-group-append">
+                                    <span class="input-group-text font-w600"><i class="fa fa-fw fa-link"></i></span>
+                                </div>
+                                <input type="text" class="form-control form-control-sm col-sm-5" value="{{$e.Value}}" name="domain-tags" placeholder="www.test.com">
+                            </div>
+                            <div class="prefix_delete badge-primary"><i class="si si-close"></i></div>
+                        </div>
+                    {{end}}
+                </div>
+                <div class="pt-3" style="width: 94.5%;border-top: 1px dashed #ddd;">
+                    <button style="margin: auto;display: block" type="button" data-action='{{urlfor "Prefix.Create"}}' class="item_create btn btn-primary btn-sm">添加</button>
+                </div>
+            </div>
+            <div class="fade fade-left tab-pane" id="keyword-box" role="tabpanel">
+                <div style="width: 94%">
+                    <textarea style="height:250px;overflow-y: scroll;" class="form-control font-size-sm" id="keyword" name="keyword" placeholder="一行一个关键词">{{$.info.Keyword}}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="block-content block-content-sm block-content-full bg-body-light rounded-bottom fixed-bottom">
+            <div class="row">
+                <div class="col-6">
+                    <button type="button" class="btn btn-secondary btn-sm font-weight-normal" data-wizard="prev"><i class="fa fa-angle-left mr-1"></i> 上一步</button>
+                </div>
+                <div class="col-6 text-right">
+                    <button type="button" class="btn btn-secondary btn-sm font-weight-normal" data-wizard="next">下一步 <i class="fa fa-angle-right ml-1"></i></button>
+                    <button type="submit" class="btn btn-primary btn-sm font-weight-normal d-none" data-wizard="finish"><i class="fa fa-check mr-1"></i> 提交</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
