@@ -45,6 +45,7 @@
     5：默认用户名：Spider@TianHe.com
     6：默认用户密码：TianWebSite
     7：后台地址：http://授权域名/admin/admin/index
+    8: 数据库配置成功的情况下将由程序自行初始化数据库
 ```
 
 ### 售后
