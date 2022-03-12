@@ -1,7 +1,7 @@
 <main id="main-container">
     <div class="content">
         <div class="row">
-            {{if $.vers.isVers }}
+
                 <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                     <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
                         <div class="block-content block-content-full">
@@ -20,12 +20,15 @@
                                 {{end}}
                             </div>
                             <div class="text-center pt-2" style="border-top: 1px dashed #ddd">
-                                <button data-download="{{$.vers.vers.os_path}}" data-vers="{{$.vers.vers.versStr}}" data-update="{{urlfor "Admin.Update"}}" type="button" class="btn btn-alt-primary font-size-sm update-btn" style="margin-left: -10px">确定更新</button>
+                                {{if $.vers.isVers }}
+                                    <button data-download="{{$.vers.vers.os_path}}" data-vers="{{$.vers.vers.versStr}}" data-update="{{urlfor "Admin.Update"}}" type="button" class="btn btn-alt-primary font-size-sm update-btn" style="margin-left: -10px">确定更新</button>
+                                {{else}}
+                                    <button type="button" disabled class="btn btn-alt-secondary font-size-sm " style="margin-left: -10px">无需更新</button>
+                                {{end}}
                             </div>
                         </div>
                     </a>
                 </div>
-            {{end}}
             <div class="col-6 col-md-3 col-lg-6 col-xl-3">
                 测试更新
             </div>
