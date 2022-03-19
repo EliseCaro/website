@@ -1,8 +1,7 @@
 <main id="main-container">
     <div class="content">
         <div class="row">
-
-                <div class="col-6 col-md-3 col-lg-6 col-xl-3">
+                <div class="col-6 col-md-6 col-lg-6 col-xl-6">
                     <a class="block block-rounded block-link-pop border-left border-primary border-4x" href="javascript:void(0)">
                         <div class="block-content block-content-full">
                             <div class="row">
@@ -13,7 +12,7 @@
                                     <div class="text-danger font-size-sm text-right">最新版本：{{$.vers.vers.versStr}}</div>
                                 </div>
                             </div>
-                            <div class="font-size-sm text-muted pt-2 pb-2" style="line-height: 25px;">
+                            <div class="font-size-sm text-muted pt-2 pb-2" style="line-height: 25px;min-height: 66px;">
                                 {{$.vers.vers.description}}
                                 {{if .vers.vers.context }}
                                     <span data-toggle="tooltip" data-placement="bottom" data-html="true" data-original-title="<div class='font-size-sm'> {{$.vers.vers.context}}</div>" class="js-tooltip text-primary">&nbsp;&nbsp;<i class="far fa-1x fa-bell"></i></span>
@@ -29,8 +28,33 @@
                         </div>
                     </a>
                 </div>
-            <div class="col-6 col-md-3 col-lg-6 col-xl-3">
-                测试更新
+            <div class="col-6 col-md-6 col-lg-6 col-xl-6">
+                <a class="block block-rounded block-link-pop border-left {{if eq .auth.class "text-primary" }}border-primary{{else}}border-danger{{end}} border-4x" href="javascript:void(0)">
+                    <div class="block-content block-content-full">
+                        <div class="row">
+                            <div class="col-4" style="border-right:1px dashed #D0D0D0; ">
+                                {{if eq .auth.class "text-primary" }}
+                                    <div style="text-align: center;width: 100%;">
+                                        <i class="fa fa-3x fa-crown {{$.auth.class}}" style="line-height: 90px;"></i>
+                                    </div>
+                                    <div class="text-muted mb-3 {{$.auth.class}}" style="text-align: center">正版授权</div>
+                                {{else}}
+                                    <div style="text-align: center;width: 100%;">
+                                        <i class="fa fa-3x fa-handshake-slash {{$.auth.class}}" style="line-height: 90px;"></i>
+                                    </div>
+                                    <div class="text-muted mb-3 {{$.auth.class}}" style="text-align: center">软件未授权</div>
+                                {{end}}
+                            </div>
+                            <div class="col-8">
+                                <div class="font-size-sm text-left ml-2 mb-1">程序版本：<span class="{{$.auth.class}}">{{config "String" "system_versions" ""}}</span></div>
+                                <div class="font-size-sm text-left ml-2 mb-2">授权域名：<span class="{{$.auth.class}}">{{config "String" "system_domain" ""}}</span></div>
+                                <div class="font-size-sm text-left ml-2 mb-1">公司官网：<span data-action="{{$.auth.website}}" class="jump_urls {{$.auth.class}}">{{$.auth.website}}</span></div>
+                                <div class="font-size-sm text-left ml-2 mb-1">产品QQ群：<span class="{{$.auth.class}}">{{$.auth.qqGroup}}</span></div>
+                                <div class="font-size-sm text-left ml-2 mb-1">系统信息：<span class="{{$.auth.class}}">{{$.auth.system}}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>

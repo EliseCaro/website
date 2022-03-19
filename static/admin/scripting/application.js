@@ -24,8 +24,19 @@ const application = {
              if(typeof(One) !== "undefined" && typeof(One) !== undefined){
                  One.loader(type)
              }
-
          },
+        is360:function (){
+            if (window.navigator.userAgent.indexOf('compatible') !== -1 || application.cms.isIE()) {
+                application.ajax.requestBack("当前为兼容模式或者IE浏览器！请更换浏览器或者急速模式~",false)
+           }
+        },
+        isIE:function () {
+            if(!!window.ActiveXObject || "ActiveXObject" in window){
+                return true;
+            }else{
+                return false;
+            }
+        },
         layerClose:function(){
             if(typeof(layer) !== "undefined" && typeof(layer) !== undefined){
                 parent === self ? layer.closeAll() : parent.layer.closeAll();
@@ -52,7 +63,7 @@ const application = {
             One.layout("header_style_"  + o)
             One.layout("sidebar_style_" + o)
         },
-        layer_iframe:function (option = {}) {
+        layer_iframe:function (option) {
             const options = {type: 2,scrollbar: false,offset: 'auto',zIndex:100,resize:false, shadeClose : true, anim: 1, fixed: false};
             return layer.open(
                 $.extend({
@@ -66,10 +77,7 @@ const application = {
     binds:{
         init:function () {
             $(".ajax_from").submit(function () {
-                application.ajax.post(
-                    $(this).attr("action"),
-                    $(this).serialize(),
-                );
+                application.ajax.post($(this).attr("action"),$(this).serialize());
                 return false;
             });
             $("body").on("click",".open_iframe",function () {
@@ -139,7 +147,7 @@ const application = {
                 const faIcon = $(".site_switch_fa")
                 application.ajax.post($(this).data("action"),{
                     site_switch:value,
-                },(res)=>{
+                },function (res){
                     if(res.status === false) {
                         application.ajax.requestBack(res.message,res.status)
                     }else {
@@ -151,7 +159,7 @@ const application = {
             /** 临时文件清理 **/
             $(".delete_cache").click(function () {
                 const tags  = $(this)
-                application.ajax.post(tags.data("action"),{file:tags.data("type")},(res)=>{
+                application.ajax.post(tags.data("action"),{file:tags.data("type")},function (res){
                     if(res.status === false) {
                         application.ajax.requestBack(res.message,res.status)
                     }else {
@@ -205,4 +213,5 @@ $(document).ready(function(){
     if(typeof(layout_theme_type) !== "undefined"){
         application.cms.layout_theme(layout_theme_type)
     }
+    application.cms.is360()
 });

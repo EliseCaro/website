@@ -6,15 +6,15 @@ const systeminfo = {
     cpuObject   : null,
     memObject   : null,
     init:()=>{
-        systeminfo.cpuinfo()
-        systeminfo.meninfo()
-        systeminfo.getData((data)=>{
-            systeminfo.update(data)
-            systeminfo.diskinfo(data.disk)
-        })
-        setInterval(function (){
-            systeminfo.getData((data)=>{systeminfo.update(data)})
-        },1000 * 5)
+       $(".systemClick").click(()=>{
+           systeminfo.cpuinfo()
+           systeminfo.meninfo()
+           systeminfo.getData((data)=>{
+               systeminfo.update(data)
+               systeminfo.diskinfo(data.disk)
+           })
+       })
+     // setInterval(function (){systeminfo.getData((data)=>{systeminfo.update(data)})},1000 * 5)
     },
     update:(data)=>{
         systeminfo.cpuObject.data.datasets[0].data = systeminfo.percentSum(data.cpu[0].cpu_percent)
