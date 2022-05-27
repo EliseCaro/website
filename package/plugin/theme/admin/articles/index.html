@@ -1,0 +1,37 @@
+<main id="main-container">
+    {{template "plugin/theme/admin/sidebar.html" .}}
+    <style>
+        .domainSelect{position: absolute;top: 4px;left:80px;z-index: 999;}
+        .domain-btn-1{border-top-right-radius: 0;border-bottom-right-radius: 0;}
+        .domain-btn-2{border-top-left-radius: 0;border-bottom-left-radius: 0;}
+        .rounded-2{border-radius: 10px;}
+    </style>
+    <div class="content p-3">
+        <!-- Full Table -->
+        <div class="block block-themed">
+            <div class="block-header border-bottom">
+                <h3 class="block-title font-weight-normal">文章管理中心</h3>
+                <div class="block-options">
+                    <button type="button" class="btn-block-option font-size-sm" data-toggle="block-option" data-action="fullscreen_toggle"></button>
+                </div>
+            </div>
+            <div class="block-content pt-2">
+                <div class="table-responsive pb-2 font-size-sm table-responsive-custom" style="position: relative">
+                    <table class="js-table-checkable table table-bordered table-striped table-vcenter js-dataTable_init" data-action='{{$.ActionUrls}}'></table>
+                    <div class="domainSelect">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn btn-sm btn-alt-primary domain-btn-1" style="">选择数据表</button>
+                            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split btn-sm domain-btn-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <div class="dropdown-menu">
+                                {{range $index, $elem := .tables}}
+                                    <a class="dropdown-item {{if eq $elem.Table $.tableName}}bg-primary rounded-2 text-white{{end}}" href="{{urlfor "Articles.Index" ":table" $elem.Table}}">{{$elem.Table}}</a>
+                                {{end}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END Full Table -->
+    </div>
+</main>

@@ -1,0 +1,46 @@
+.table-responsive-custom #DataTables_Table_0_filter input{margin: 3px 3px 0 0;}
+.table-responsive-custom .dataTables_info{padding-top: 0.6em !important;}
+.table-responsive-custom .dataTables_info{padding-top: 0.6em !important;}
+.btn-alt-dual-tianhe{
+    color: #fff;
+    background-color: #52666c;
+    border-color: #52666c;
+}
+.btn-alt-dual-tianhe:hover{
+    color: #fff;
+    background-color: #405055;
+    border-color: #374549;
+    box-shadow: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.bg323e42 {
+    background-color: #323e42;
+}
+.simplebar-mask{
+    background-color: #323e42;
+}
+
+.btn-alt-dual-tianhe-2{
+    color: #fff;
+    background-color:rgba(0,0,0,0);
+    border-color: #374549;
+}
+.btn-alt-dual-tianhe-2:hover{
+    color: #fff;
+    background-color: #52666c;
+    border-color: #52666c;
+    box-shadow: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+/*---滚动条默认显示样式--*/
+::-webkit-scrollbar-thumb{height:50px;outline-offset:-2px;outline:2px solid #fff;-webkit-border-radius:4px;border: 2px solid #fff;}
+/*---鼠标点击滚动条显示样式--*/
+::-webkit-scrollbar-thumb:hover{height:50px;-webkit-border-radius:4px;}
+/*---滚动条大小--*/
+::-webkit-scrollbar{width:8px;height:8px;}
+/*---滚动框背景样式--*/
+::-webkit-scrollbar-track-piece{-webkit-border-radius:0;}
+::-webkit-scrollbar-track { background-color: #eee; } /* 滚动条的滑轨背景颜色 */
+::-webkit-scrollbar-thumb { background-color: rgba(0, 0, 0, 0.2); } /* 滑块颜色 */
+::-webkit-scrollbar-button { background-color: #eee; } /* 滑轨两头的监听按钮颜色 */
+::-webkit-scrollbar-corner { background-color: black; } /* 横向滚动条和纵向滚动条相交处尖角的颜色 */

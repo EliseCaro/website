@@ -1,0 +1,42 @@
+<main id="main-container">
+    {{template "plugin/theme/admin/sidebar.html" .}}
+    <div class="content p-3">
+        <!-- Block Tabs Animated Slide Right -->
+        <div class="block">
+            <ul class="nav nav-tabs nav-tabs-block" data-toggle="tabs" role="tablist">
+                {{range $index, $item := $.groupTheme}}
+                     <li class="nav-item"><a class="nav-link {{if eq "chinese" $index}}active{{end}}" href="#tab_{{$index}}">{{$item}}</a></li>
+                {{end}}
+            </ul>
+            <div class="block-content tab-content overflow-hidden">
+                {{range $i, $t := $.theme}}
+                    <div class="tab-pane fade fade-right {{if eq "chinese" $i}}show active{{end}}" id="tab_{{$i}}" role="tabpanel">
+                        <div class="row row-deck js-gallery push">
+                            {{range $index, $item := $t}}
+                                <div class="col-xl-2 animated fadeIn">
+                                    <div class="block">
+                                        <div class="options-container fx-item-rotate-r" style="height: 300px">
+                                            <img class="img-fluid options-item" src="{{$item.cover}}" alt="{{$item.title}}">
+                                            <div class="options-overlay bg-black-75">
+                                                <div class="options-overlay-content">
+                                                    <a class="btn btn-sm btn-alt-primary img-lightbox" href="{{$item.cover}}">
+                                                        <i class="fa fa-search-plus mr-1"></i> 预览
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="block-content block-header-default pl-3 pr-3 pb-2 pt-2">
+                                            <div class="text-success float-right font-size-sm">{{$item.tags}}</div>
+                                            <span class="font-size-sm">{{$item.title}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {{end}}
+                        </div>
+                    </div>
+                {{end}}
+            </div>
+        </div>
+        <!-- END Block Tabs Animated Slide Right -->
+    </div>
+</main>

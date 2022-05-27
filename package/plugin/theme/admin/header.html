@@ -1,0 +1,199 @@
+<aside id="side-overlay" class="font-size-sm">
+    <div class="content-header border-bottom bg323e42">
+        <a class="img-link mr-1" href="javascript:void(0)">
+            <img class="img-avatar img-avatar32" src="{{.users.Avatar | FileUrls}}" alt="{{$.users.Nickname}}">
+        </a>
+        <div class="ml-2">
+            <a class="link-fx text-white font-w600" href="javascript:void(0)">{{$.users.Nickname}}</a>
+        </div>
+        <a class="ml-auto btn btn-sm btn-alt-dual-tianhe" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_close">
+            <i class="fa fa-fw fa-times"></i>
+        </a>
+    </div>
+    <div class="content-side p-0">
+        <div class="block mb-0">
+            <div class="block-content p-0 pt-3 pb-2 bg323e42">
+                <div class="row pl-3 pr-3">
+                    <div class="col-lg-6 pr-1">
+                        <div class="block mb-2 btn-alt-dual-tianhe delete_cache" data-action='{{urlfor "Endorse.Clear"}}' data-type="logs" style="border-radius: 10px;cursor: pointer">
+                            <div class="block-content font-w600 font-size-h4 text-center p-0 pt-2">{{$.cache_size.logs}}</div>
+                            <div class="block-content p-0 text-center pb-2">清空日志</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 pl-1">
+                        <div class="block mb-2 btn-alt-dual-tianhe delete_cache" data-action='{{urlfor "Endorse.Clear"}}' data-type="cache" style="border-radius: 10px;cursor: pointer">
+                            <div class="block-content font-w600 font-size-h4 text-center p-0 pt-2">{{$.cache_size.cache}}</div>
+                            <div class="block-content p-0 text-center pb-2">清空缓存</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pl-3 pr-3">
+                    <div class="col-lg-12">
+                        <div id="site_switch" data-name="site_switch" data-value="{{$.switch}}" data-action="{{urlfor "Config.Index"}}" class="block mb-2 btn-alt-dual-tianhe" style="border-radius: 10px;cursor: pointer">
+                            <div class="block-content font-w600 font-size-h4 text-center p-0 pt-3 pb-2">
+                                <i class="fa site_switch_fa fa-sync fa-2x {{if eq 1 $.switch}}fa-spin{{end}} text-white"></i>
+                            </div>
+                            <div class="block-content p-0 text-center pb-2">站点运行状态</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pl-3 pr-3">
+                    <div class="col-lg-6 pr-1">
+                        <div class="block mb-2 btn-alt-dual-tianhe" style="border-radius: 10px;cursor: pointer">
+                            <div class="block-content pt-3 pl-3 pr-3 pb-2"><canvas class="cpuSysteminfo" style="height:98px"></canvas></div>
+                            <div class="block-content p-0 text-center pb-2">CPU使用率</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 pl-1">
+                        <div class="block mb-2 btn-alt-dual-tianhe" style="border-radius: 10px;cursor: pointer">
+                            <div class="block-content pt-3 pl-3 pr-3 pb-2"><canvas class="memSysteminfo" style="height:98px"></canvas></div>
+                            <div class="block-content p-0 text-center pb-2">内存使用率</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ml-3 mr-3 mb-2 btn-alt-dual-tianhe disk_box pt-2 pb-2" style="border-radius: 10px;cursor: pointer;display: none"></div>
+            </div>
+        </div>
+    </div>
+</aside>
+<nav id="sidebar" aria-label="Main Navigation">
+    <div class="content-header bg-white-5">
+        <a class="font-w600 text-dual" href='{{urlfor "Admin.Index"}}'>
+            <i class="fa fa-circle-notch text-primary"></i>
+            <span class="smini-hide">
+                <span class="font-w700 font-size-h5">{{config "String" "system_name" ""}}</span>
+            </span>
+        </a>
+        <div class="dropdown d-inline-block ml-2">
+            <a class="btn btn-sm btn-dual" id="sidebar-themes-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
+                <i class="si si-drop"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right font-size-sm smini-hide border-0" aria-labelledby="sidebar-themes-dropdown">
+                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="/static/admin/modality/themes/amethyst.css" href="javascript:void(0);">
+                    <span>烂漫紫色</span>
+                    <i class="fa fa-circle text-amethyst"></i>
+                </a>
+                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="/static/admin/modality/themes/modern.min.css" href="javascript:void(0);">
+                    <span>清新绿色</span>
+                    <i class="fa fa-circle text-modern"></i>
+                </a>
+                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="theme" data-theme="/static/admin/modality/themes/smooth.min.css" href="javascript:void(0);">
+                    <span>少女粉色</span>
+                    <i class="fa fa-circle text-smooth"></i>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="layout" data-action="light" href="javascript:void(0);">
+                    <span>白色主题</span>
+                    <i class="fa fa-circle text-white"></i>
+                </a>
+                <a class="dropdown-item d-flex align-items-center justify-content-between" data-toggle="layout" data-action="dark" href="javascript:void(0);">
+                    <span>黑色主题</span>
+                    <i class="fa fa-circle text-black"></i>
+                </a>
+            </div>
+        </div>
+        <a class="d-lg-none btn btn-sm btn-dual ml-2" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0)">
+            <i class="fa fa-fw fa-times"></i>
+        </a>
+    </div>
+    <div class="content-side content-side-full pt-2">
+        <ul class="nav-main">
+            {{range $index, $elem := .sidebar}}
+                {{if le ($elem.Child|len) 0 }}
+                    <li class="nav-main-item">
+                        <a class="nav-main-link {{if eq $.thisMen.Id $elem.Id }}active{{end}}{{if eq $elem.IsOpen true }}active{{end}}" href="{{if $elem.UrlValue }} {{$elem.UrlValue}} {{else}} javascript:void(0); {{end}}">
+                            <i class="fa fa-fw fa-{{$elem.Icon}}"></i>&nbsp;
+                            <span class="nav-main-link-name">&nbsp;{{$elem.Title}}</span>
+                        </a>
+                    </li>
+                {{else}}
+                    <li class="nav-main-item {{if eq $.thisMen.Pid $elem.Id }}open{{end}}{{if eq $elem.IsOpen true }}open{{end}}">
+                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="{{if eq $elem.IsOpen true }}true{{else}}{{if eq $.thisMen.Pid $elem.Id }}true{{else}}false{{end}}{{end}}" href="javascript:void(0);">
+                            <i class="fa fa-fw fa-{{$elem.Icon}}"></i>&nbsp;
+                            <span class="nav-main-link-name"> {{$elem.Title}}</span>
+                        </a>
+                        <ul class="nav-main-submenu">
+                            {{range $i, $e := $elem.Child}}
+                                <li class="nav-main-item">
+                                    <a class="nav-main-link {{if eq $.thisMen.Id $e.Id }}active{{end}}{{if eq $e.IsOpen true }}active{{end}}" href="{{if $e.UrlValue }} {{$e.UrlValue}} {{else}} javascript:void(0); {{end}}">
+                                        <i class="fa fa-fw fa-{{$e.Icon}}"></i>&nbsp;
+                                        <span class="nav-main-link-name">{{$e.Title}}</span>
+                                    </a>
+                                </li>
+                            {{end}}
+                        </ul>
+                    </li>
+                {{end}}
+            {{end}}
+        </ul>
+    </div>
+</nav>
+<header id="page-header">
+    <div class="content-header pl-3 pr-3">
+        <div class="d-flex align-items-center">
+            <button type="button" class="btn btn-dual mr-2 d-none d-lg-inline-block" data-toggle="layout" data-action="sidebar_mini_toggle">
+                <i class="fa fa-fw fa-ellipsis-v"></i>
+            </button>
+            {{range $index, $elem := .headMen}}
+                <a href="{{$elem.UrlValue}}" class="{{if eq $.thisHed.Id $elem.Id }} btn-alt-primary {{else}} btn-dual {{end}} btn mr-2 font-weight-normal">{{$elem.Title}}</a>
+            {{end}}
+        </div>
+        <div class="d-flex align-items-center">
+            <div class="dropdown d-inline-block ml-2">
+                <button type="button" class="btn btn-dual" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="rounded" src="{{.users.Avatar | FileUrls}}" alt="{{$.users.Nickname}}" style="width: 18px;">
+                    <span class="d-none d-sm-inline-block ml-1 font-weight-normal">{{$.users.Nickname}}</span>
+                    <i class="fa fa-fw fa-angle-down d-none d-sm-inline-block"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-user-dropdown">
+                    <div class="p-3 text-center bg-primary">
+                        <img class="img-avatar img-avatar48 img-avatar-thumb" src="{{.users.Avatar | FileUrls}}" alt="{{$.users.Nickname}}">
+                    </div>
+                    <a class="dropdown-item d-flex align-items-center justify-content-between open_iframe" data-area="580px,400px" href='{{urlfor "Users.Profile" ":popup" 1}}'>
+                    <span>个人资料</span>
+                    <span><i class="si si-user ml-1"></i></span>
+                    </a>
+                    <a class="dropdown-item d-flex align-items-center justify-content-between" href='{{urlfor "Endorse.Quit"}}'>
+                    <span>安全退出</span>
+                    <i class="si si-logout ml-1"></i>
+                    </a>
+                </div>
+            </div>
+            <button type="button" class="btn btn-dual ml-2 restart_system" data-action="{{urlfor "Admin.Update"}}">
+                <i class="fa fa-sync fa-list-ul fa-spin js-tooltip" data-toggle="tooltip"  data-placement="left" data-original-title="重启系统"></i>
+            </button>
+            <div class="dropdown d-inline-block ml-2">
+                <button type="button" class="btn btn-dual" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="si si-bell"></i>
+                    <span class="badge badge-primary badge-pill js_count_notifications">{{$.inform.count}}</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0 border-0 font-size-sm" aria-labelledby="page-header-notifications-dropdown">
+                    <div class="p-2 bg-primary text-center">
+                        <h5 class="dropdown-header text-uppercase text-white">我的消息中心</h5>
+                    </div>
+                    <ul class="nav-items mb-0 js_dynamic_notifications">
+                        {{range $index, $elem := .inform.items}}
+                        <li>
+                            <a class="text-dark media py-2 open_iframe" data-area="380px,240px"  href='{{urlfor "Inform.Check" ":id" $elem.Id ":popup" 1}}'>
+                            <div class="mr-2 ml-3">
+                                <i class="fa fa-fw fa-eye text-amethyst-dark"></i>
+                            </div>
+                            <div class="media-body pr-2">
+                                <div class="font-weight-normal font-size-sm">{{$elem.Context}}...</div>
+                                <small class="text-muted">{{date $elem.CreateTime "Y-m-d H:i:s"}}</small>
+                            </div>
+                            </a>
+                        </li>
+                        {{end}}
+                    </ul>
+                    <div class="p-2 border-top">
+                        <a class="btn btn-sm btn-light btn-block text-center" href='{{urlfor "Inform.Index"}}'><i class="fa fa-fw fa-arrow-down mr-1"></i> 查看全部消息</a>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-dual ml-2 systemClick" data-toggle="layout" data-action="side_overlay_toggle">
+                <i class="fa fa-fw fa-list-ul fa-flip-horizontal"></i>
+            </button>
+        </div>
+    </div>
+</header>

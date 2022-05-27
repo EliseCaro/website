@@ -1,0 +1,80 @@
+.ajax-upload-dragdrop{
+    flex-direction:row;
+    display:flex
+}
+.upload-dragdrop-plus{
+    padding-top: 13px;
+    width: 90px;
+    line-height: 73px;
+    text-align: center;
+    border: 2px dotted #A5A5C7;
+}
+
+.upload-dragdrop-plus i{
+    font-size: 2rem;
+}
+.ajax-file-upload-container{
+    height: 90px;
+    width: 375px;
+    flex-direction:row;
+    display:flex
+}
+.ajax-file-upload-statusbar{
+    background: #0b5b67;
+    margin-left:8px;
+    width: 90px !important;
+    position: relative;
+}
+.ajax-file-upload-filename{
+    display: none;
+}
+.upload_onLoad{
+    display: none !important;
+}
+.upload_single_label{
+    line-height: 80px !important;
+}
+.ajax-file-upload-progress {
+    position: absolute;
+    width: 100%;
+    padding: 2px;
+    display: inline-block;
+    bottom: 0;
+    left: 0;
+    background: #14adc4;
+    color: #ffffff;
+    font-size: 12px;
+}
+.ajax-file-upload-preview{
+    width: 90px;
+    height: 90px;
+}
+.ajax-file-upload-abort{
+    display: none;
+}
+.ajax-file-upload-red {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: -4px;
+    right: -4px;
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+.ajax-file-upload-red .si-close{
+    font-size: 1.3rem;
+}
+.files_box_upload{
+    background: #ffffff;
+    height: 100%;
+    width: 100%;
+    color: #0f8496;
+    text-align: center;
+    line-height: 100%;
+    font-size: 2rem;
+    border: 2px dotted #A5A5C7;
+    cursor: pointer;
+}

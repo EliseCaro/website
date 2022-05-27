@@ -1,0 +1,17 @@
+<script src="/static/admin/pages/admin_index.js?v={{$.versions}}"></script>
+<script>
+    $(document).ready(function(){
+        $("body").on("click",".vers_display_block",function(){
+            $(".none_versList").fadeIn("slow");
+            $(this).removeClass("vers_display_block")
+            $(this).addClass("vers_display_none")
+            $(this).html("收起更多")
+        })
+        $("body").on("click",".vers_display_none",function(){
+            $(".none_versList").fadeOut("slow");
+            $(this).removeClass("vers_display_none")
+            $(this).addClass("vers_display_block")
+            $(this).html("展开更多")
+        })
+    })
+</script>

@@ -1,0 +1,51 @@
+<main id="main-container">
+    {{template "plugin/theme/admin/sidebar.html" .}}
+    <div class="content p-3">
+        <!-- Block Tabs Animated Slide Right -->
+        <div class="block">
+            <ul class="nav nav-tabs nav-tabs-block" data-toggle="tabs" role="tablist">
+                <li class="nav-item"><a class="nav-link active" href="#tab_enable">本地插件</a></li>
+                <li class="nav-item"><a class="nav-link" href="#tab_shop">插件市场</a></li>
+            </ul>
+            <div class="block-content tab-content overflow-hidden">
+                <div class="tab-pane fade fade-right show active" id="tab_enable" role="tabpanel">
+                    <div class="row">
+                        {{range $index, $item := $.local}}
+                            <!-- Story -->
+                            <div class="col-lg-3 invisible" data-toggle="appear" data-offset="50" data-class="animated fadeIn">
+                                <a class="block block-link-pop" href="javascript:void(0)">
+                                    <div style="width: 100%;height: 80px;background-image: url('{{$item.Cover}}');background-size: cover"></div>
+                                    <div class="block-content" style="background-color: #f5f6f7">
+                                        <h4 class="mb-1">{{$item.Name}}（{{$item.Tags}}）</h4>
+                                        <p class="font-size-sm mt-2 mb-2">
+                                            作者：<span class="text-primary">{{$item.Author}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                            版本：<span class="text-primary">V{{$item.Versions}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                            状态：<span class="text-primary">{{if eq $item.Status 1 }}启用中{{else}}禁用中{{end}}</span>
+                                        </p>
+                                        <p class="font-size-sm mb-0" style="min-height: 45px;">{{$item.Description}}</p>
+                                        <div class="text-center mt-2 mb-3">
+                                            {{if eq $item.Status 1 }}
+                                                <button type="button"  {{if eq $item.Tags "plugin" }}disabled="disabled"{{end}} data-field="status" data-action="{{urlfor "AdminPlugin.Register"}}" data-ids="{{$item.Tags}}" class="btn btn-sm btn-alt-danger ids_disable">禁用插件</button>
+                                            {{end}}
+                                            {{if eq $item.Status 0 }}
+                                                <button type="button" data-field="status" data-action="{{urlfor "AdminPlugin.Register"}}" data-ids="{{$item.Tags}}" class="btn btn-sm btn-alt-primary ids_enable">启用插件</button>
+                                            {{end}}
+                                            {{if eq $item.IsConfig 1}}
+                                                {{if eq $item.Status 1}}
+                                                    <button type="button" data-area="600px,320px" class="btn btn-sm btn-alt-success open_iframe" href="{{urlfor "AdminPlugin.Config" ":id" $item.Id ":popup" 1}}">插件设置</button>
+                                                {{end}}
+                                            {{end}}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- END Story -->
+                        {{end}}
+                    </div>
+                </div>
+                <div class="tab-pane fade fade-right" id="tab_shop" role="tabpanel">正在开发中</div>
+            </div>
+        </div>
+        <!-- END Block Tabs Animated Slide Right -->
+    </div>
+</main>

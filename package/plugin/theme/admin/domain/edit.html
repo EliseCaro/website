@@ -1,0 +1,107 @@
+<div class="js-wizard-simple block block overflow-hidden">
+    <div class="progress rounded-0" data-wizard="progress" style="height: 6px;">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <ul class="nav nav-tabs nav-tabs-alt nav-justified" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link rounded-0 font-weight-normal active" href="#base" data-toggle="tab">基础</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link rounded-0 font-weight-normal" href="#site" data-toggle="tab">站点</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link rounded-0 font-weight-normal" href="#desc" data-toggle="tab">设置</a>
+        </li>
+    </ul>
+    <form action="" class="ajax_from" method="post">
+        <div class="block-content block-content-full tab-content px-md-5 pr-0" style="margin-left: 6px;">
+            <div class="fade fade-left tab-pane active show" id="base" role="tabpanel">
+                <div class="form-group row font-size-sm mb-2">
+                    <label class="col-form-label font-weight-normal pr-0 pl-2" for="name">站点名称</label>
+                    <div class="col-sm-4 mr-4">
+                        <input class="form-control font-size-sm" id="name" type="text" value="{{$.info.Name}}" name="name" placeholder="站点名称"/>
+                        <div class="help-block pt-1 pb-1 font-size-minimum"><code>站点名称:必填</code>&nbsp;&nbsp;用于站点logo显示</div>
+                    </div>
+                    <label class="col-form-label font-weight-normal" for="value">站点域名</label>
+                    <div class="col-sm-4">
+                        <input class="form-control font-size-sm" type="text" id="value" disabled="disabled" value="{{$.info.Value}}" name="value" placeholder="站点域名">
+                        <div class="help-block pt-1 pb-1 font-size-minimum"><code>站点域名</code>&nbsp;&nbsp;禁止编辑</div>
+                    </div>
+                </div>
+                <div class="form-group row font-size-sm mb-2">
+                    <label class="col-form-label font-weight-normal pr-0 pl-2" for="title">站点标题</label>
+                    <div class="col-sm-10">
+                        <input class="form-control font-size-sm" type="text" id="title" value="{{$.info.Title}}" name="title" placeholder="站点标题">
+                        <div class="help-block pt-1 pb-1 font-size-minimum">站点标题，用于seo标题</div>
+                    </div>
+                </div>
+                <div class="form-group row font-size-sm mb-0">
+                    <label class="col-form-label font-weight-normal pr-0 pl-2" style="line-height: 77px;" for="keyword">&nbsp;&nbsp;&nbsp;关键词</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control font-size-sm" id="keyword" name="keyword" rows="3" placeholder="关键词">{{$.info.Keyword}}</textarea>
+                        <div class="help-block pt-1 pb-1 font-size-minimum">站点关键词，用于seo关键词</div>
+                    </div>
+                </div>
+            </div>
+            <div class="fade fade-left tab-pane" id="site" role="tabpanel">
+                <div class="form-group row font-size-sm mb-2">
+                    <label class="col-form-label font-weight-normal pr-0 pl-2" for="theme_name">站点模板</label>
+                    <div class="col-sm-10">
+                        <select class="form-control font-size-sm" name="theme_name" id="theme_name">
+                            {{range $i, $item := .theme}}
+                                <option  {{if eq $.info.ThemeName $item.tags }} selected {{end}} value="{{$item.tags}}">{{$item.title}}</option>
+                            {{end}}
+                        </select>
+                        <div class="help-block pt-1 pb-1 font-size-minimum">建议不要随意切换，可能影响seo效果~</div>
+                    </div>
+                </div>
+                <div class="form-group row font-size-sm mb-0">
+                    <label class="col-form-label font-weight-normal pr-0 pl-2" style="line-height: 77px;" for="header_code">头部代码</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control font-size-sm" id="header_code" name="header_code" rows="3" placeholder="头部代码">{{$.info.HeaderCode}}</textarea>
+                    </div>
+                </div>
+                <div class="form-group row font-size-sm mb-0">
+                    <label class="col-form-label font-weight-normal pr-0 pl-2" style="line-height: 77px;" for="footer_code">尾部代码</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control font-size-sm" id="footer_code" name="footer_code" rows="3" placeholder="尾部代码">{{$.info.FooterCode}}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="fade fade-left tab-pane" id="desc" role="tabpanel">
+                <div class="form-group row font-size-sm mb-2">
+                    <label class="col-form-label font-weight-normal pr-0 pl-2" for="page_limit">每页数量</label>
+                    <div class="col-sm-10">
+                        <input class="form-control font-size-sm" type="number" id="page_limit" value="{{$.info.PageLimit}}" name="page_limit" placeholder="每页数量">
+                        <div class="help-block pt-1 pb-1 font-size-minimum">每页数量，控制该模板分页之处每页显示的数量</div>
+                    </div>
+                </div>
+                <div class="form-group row font-size-sm mb-1">
+                    <label class="col-form-label font-weight-normal pr-0 pl-2" style="line-height: 77px;" for="describe">站点描述</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control font-size-sm" id="describe" name="describe" rows="3" placeholder="站点描述">{{$.info.Describe}}</textarea>
+                        <div class="help-block pt-1 pb-1 font-size-minimum">站点描述，首页站点SEO描述字段</div>
+                    </div>
+                </div>
+                <div class="form-group row font-size-sm mb-0">
+                    <label class="col-form-label font-weight-normal pr-0 pl-2" style="line-height: 77px;" for="classify">站点分类</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control font-size-sm" id="classify" name="classify" rows="3" placeholder="站点分类">{{$.info.Classify}}</textarea>
+                        <div class="help-block pt-1 pb-1 font-size-minimum">站点分类，<code>项目类型为英文时，此项必填，每行一个分类！</code></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block-content block-content-sm block-content-full bg-body-light rounded-bottom fixed-bottom">
+            <div class="row">
+                <div class="col-6">
+                    <button type="button" class="btn btn-secondary btn-sm font-weight-normal" data-wizard="prev"><i class="fa fa-angle-left mr-1"></i> 上一步</button>
+                </div>
+                <div class="col-6 text-right">
+                    <button type="button" class="btn btn-secondary btn-sm font-weight-normal" data-wizard="next">下一步 <i class="fa fa-angle-right ml-1"></i></button>
+                    <button type="submit" class="btn btn-primary btn-sm font-weight-normal d-none" data-wizard="finish"><i class="fa fa-check mr-1"></i> 提交</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
